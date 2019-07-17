@@ -6,7 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   isAuth=false;
+  lastUpdate =new Promise(
+     (resolve, reject) => {
+      const date =new Date();
+      setTimeout(
+          ()=>{
+          resolve(date);
+          },2000
+    );
+  });
 
 appareils= [
   {
