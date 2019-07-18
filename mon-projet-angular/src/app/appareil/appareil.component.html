@@ -4,6 +4,13 @@
 }">
 
   <h4 [ngStyle]="{color: getColor()}">Appareil : {{ appareilName }} -- Statut : {{ getStatus() }}</h4>
+  <a [routerLink]="[id]">Détail</a>
+  <button class="btn btn-success" (click)="onSwitchOn()"
+          *ngIf="appareilStatus==='éteint'"
+  >allumer</button>
 
-  <input type="text" class="form-control" [(ngModel)]="appareilName">
+  <button class="btn btn-danger" (click)="onSwitchOff()"
+
+  *ngIf="appareilStatus==='allumé'"
+  >éteindre</button>
 </li>

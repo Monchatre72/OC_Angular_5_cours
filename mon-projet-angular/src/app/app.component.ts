@@ -1,44 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppareilService } from './service/appareil.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
 
-  isAuth=false;
-  lastUpdate =new Promise(
-     (resolve, reject) => {
-      const date =new Date();
-      setTimeout(
-          ()=>{
-          resolve(date);
-          },2000
-    );
-  });
 
-appareils= [
-  {
-  name:'machine à laver',
-  status:'éteint'
-  },
-  {
-  name:'machine à cuire',
-  status:'allumé'
-  },
-  {
-  name:'machine à rien',
-  status:'éteint'
+secondes: number;
+constructor(){}
+
+ngOnInit() {
+    const counter = Observable.interval(1000);
+    counter.subscribe(
+      (value:number) => {
+      this.secondes=value;
+      }, (error:any) => {console.log('Une erreur est survenue')}, ()=> {console.log('Observable complétée !')}
+      );
+
+
   }
-];
-
-
-  constructor(){
-    setTimeout(
-          ()=> {this.isAuth=true; },4000);
-  }
-  onAllumer(){
-  console.log('on allume');}
-
 }
+
